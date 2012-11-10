@@ -5,7 +5,7 @@ pkgdesc="cloud-init bzr checkout from canonical"
 arch=(any)
 license=("GPLv3")
 depends=(systemd python2 python2-yaml python2-cheetah python2-prettytable python2-oauth2 python2-boto python2-argparse python2-configobj)
-makedepends=('bzr' 'python2' 'git')
+makedepends=('bzr' 'python2')
 #_bzrtrunk="lp:~jeremydei/cloud-init/archlinux"
 _bzrtrunk="lp:~harlowja/cloud-init/boto-metadata-fixings"
 _bzrmod="cloud-init"
@@ -37,8 +37,7 @@ package() {
   mv $pkgdir/etc/cloud/cloud.cfg ${pkgdir}/etc/cloud/cloud.cfg.ubuntu_default
 
   # Cloud.cfg crafted for archlinux
+  # User has to copy this into place in /etc/cloud/cloud.cfg
   curl http://dl.dropbox.com/u/402975/archlinux.cloud.cfg -o archlinux.cloud.cfg
   cp archlinux.cloud.cfg ${pkgdir}/etc/cloud/archlinux.cloud.cfg
-
-  #rm $pkgdir/etc/systemd/system/cloud-init-local.service  #cloud-init-local isn't something we want to start.?
 }
