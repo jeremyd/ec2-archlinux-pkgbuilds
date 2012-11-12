@@ -1,9 +1,10 @@
 pkgname=cloud-init-bzr
-pkgver=722
+pkgver=723
 pkgrel=1
 pkgdesc="Bootstrap EC2 instances with Cloud-init from Canonical.  Packaged from bzr trunk."
 arch=(any)
 license=("GPLv3")
+url=https://launchpad.net/cloud-init
 # cloud-init python lib requirements (according to Requires file):
 # cheetah (aur), PrettyTable (aur), oauth (aur), boto (aur), configobj (community), pyyaml (community), argparse (aur)
 # the ONLY non-match is we are using python2-yaml vs pyyaml.
