@@ -1,7 +1,7 @@
 pkgname=cloud-init-bzr
 pkgver=722
 pkgrel=1
-pkgdesc="cloud-init bzr checkout from canonical"
+pkgdesc="Bootstrap EC2 instances with Cloud-init from Canonical.  Packaged from bzr trunk."
 arch=(any)
 license=("GPLv3")
 # cloud-init python lib requirements (according to Requires file):
