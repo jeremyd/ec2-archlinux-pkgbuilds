@@ -15,6 +15,7 @@ _bzrmod="cloud-init"
 source=(archlinux.cloud.cfg)
 noextract=(archlinux.cloud.cfg)
 sha1sums=(4e32767ac0e18f3b6f34cfb184af17c8a84d563c)
+backup=(etc/cloud/cloud.cfg etc/cloud/cloud.cfg.d/05_logging.cfg)
 
 build() {
   cd $srcdir
@@ -33,12 +34,7 @@ build() {
 }
 
 package() {
-  # Don't want a default ubuntu config in the package!
+  # Use a cloud.cfg crafted for archlinux
   mv $pkgdir/etc/cloud/cloud.cfg ${pkgdir}/etc/cloud/cloud.cfg.ubuntu_default
-
-  # Cloud.cfg crafted for archlinux
-  echo Final install steps:
-  echo Copy into place the archlinux config /etc/cloud/archlinux.cloud.cfg /etc/cloud/cloud.cfg 
-  echo Enable the cloud-init services: cloud-init.service cloud-config.service and cloud-final.service.
-  cp archlinux.cloud.cfg ${pkgdir}/etc/cloud/archlinux.cloud.cfg
+  cp archlinux.cloud.cfg ${pkgdir}/etc/cloud/cloud.cfg
 }
