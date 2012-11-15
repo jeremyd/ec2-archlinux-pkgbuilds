@@ -1,7 +1,7 @@
-pkgname=cloud-init-bzr
-pkgver=723
+pkgname=cloud-init
+pkgver=0.7.1
 pkgrel=1
-pkgdesc="Bootstrap EC2 instances with Cloud-init from Canonical.  Packaged from bzr trunk."
+pkgdesc="Bootstrap EC2 instances with Cloud-init from Canonical.  Packaged from tarball release."
 arch=(any)
 license=("GPLv3")
 url=https://launchpad.net/cloud-init
@@ -9,28 +9,19 @@ url=https://launchpad.net/cloud-init
 # cheetah (aur), PrettyTable (aur), oauth (aur), boto (aur), configobj (community), pyyaml (community), argparse (aur)
 # the ONLY non-match is we are using python2-yaml vs pyyaml.
 depends=(systemd python2 python2-yaml python2-cheetah python2-prettytable python2-oauth2 python2-boto python2-argparse python2-configobj)
-makedepends=('bzr' 'python2')
-_bzrtrunk="lp:cloud-init"
-_bzrmod="cloud-init"
+makedepends=('python2')
 # Archlinux specific cloud.cfg
-source=(archlinux.cloud.cfg)
+source=(archlinux.cloud.cfg
+        https://launchpad.net/cloud-init/trunk/0.7.1/+download/cloud-init-0.7.1.tar.gz
+        )
 noextract=(archlinux.cloud.cfg)
-sha1sums=(4e32767ac0e18f3b6f34cfb184af17c8a84d563c)
+sha1sums=(4e32767ac0e18f3b6f34cfb184af17c8a84d563c
+          b2948983d8f353d490d2658829738248a7923067 
+)
 backup=(etc/cloud/cloud.cfg etc/cloud/cloud.cfg.d/05_logging.cfg)
 
 build() {
-  cd $srcdir
-
-  msg "Connecting to Bazaar server..."
-  if [ -d $_bzrmod ]; then
-    cd ${_bzrmod} && bzr pull ${_bzrtrunk} -r ${pkgver}
-    msg "The local files are updated."
-  else
-    bzr branch ${_bzrtrunk} ${_bzrmod} -q -r ${pkgver}
-    cd $_bzrmod
-  fi
-  msg "Bazaar checkout done or server timeout"
-
+  cd ${srcdir}/${pkgname}-${pkgver}
   python2 ./setup.py install --root=${pkgdir} --init-system systemd
 }
 
