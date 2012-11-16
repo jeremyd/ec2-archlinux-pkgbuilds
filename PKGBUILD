@@ -1,6 +1,6 @@
 pkgname=cloud-init-bzr
-pkgver=723
-pkgrel=1
+pkgver=740
+pkgrel=2
 pkgdesc="Bootstrap EC2 instances with Cloud-init from Canonical.  Packaged from bzr trunk."
 arch=(any)
 license=("GPLv3")
@@ -9,7 +9,7 @@ url=https://launchpad.net/cloud-init
 # cheetah (aur), PrettyTable (aur), oauth (aur), boto (aur), configobj (community), pyyaml (community), argparse (aur)
 # the ONLY non-match is we are using python2-yaml vs pyyaml.
 depends=(systemd python2 python2-yaml python2-cheetah python2-prettytable python2-oauth2 python2-boto python2-argparse python2-configobj)
-makedepends=('bzr' 'python2')
+makedepends=('bzr' 'python2' 'python2-distribute')
 _bzrtrunk="lp:cloud-init"
 _bzrmod="cloud-init"
 # Archlinux specific cloud.cfg
