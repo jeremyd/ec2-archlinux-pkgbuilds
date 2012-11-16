@@ -1,6 +1,6 @@
 pkgname=cloud-init
 pkgver=0.7.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Bootstrap EC2 instances with Cloud-init from Canonical.  Packaged from tarball release."
 arch=(any)
 license=("GPLv3")
@@ -9,7 +9,7 @@ url=https://launchpad.net/cloud-init
 # cheetah (aur), PrettyTable (aur), oauth (aur), boto (aur), configobj (community), pyyaml (community), argparse (aur)
 # the ONLY non-match is we are using python2-yaml vs pyyaml.
 depends=(systemd python2 python2-yaml python2-cheetah python2-prettytable python2-oauth2 python2-boto python2-argparse python2-configobj)
-makedepends=('python2')
+makedepends=('python2' 'python2-distribute')
 # Archlinux specific cloud.cfg
 source=(archlinux.cloud.cfg
         https://launchpad.net/cloud-init/trunk/0.7.1/+download/cloud-init-0.7.1.tar.gz
